@@ -1,5 +1,7 @@
 import { MapPinLine, CurrencyDollar, Trash, Minus, Plus } from 'phosphor-react'
 import { PaymentMethodInput } from './components/PaymentMethodInput'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 import {
   AddressContainer,
   CheckoutPageContainer,
@@ -15,6 +17,8 @@ import {
 } from './styles'
 
 export function CheckoutPage() {
+  const { cartItems } = useContext(CartContext)
+
   return (
     <CheckoutPageContainer className="wrapper">
       <section>
@@ -66,42 +70,33 @@ export function CheckoutPage() {
       <section>
         <h3>Cafés selecionados</h3>
         <CoffeesSelected>
-          <CoffeeInfo>
-            <img src="public/tradicional.png" alt="" />
-            <div>
-              <p>Expresso Tradicional</p>
-              <ActionItemPayment>
-                <Counter>
-                  <button>-</button>
-                  <span>1</span>
-                  <button>+</button>
-                </Counter>
-                <ButtonRemove>
-                  <Trash />
-                  Remover
-                </ButtonRemove>
-              </ActionItemPayment>
-            </div>
-            <strong>R$ 9,90</strong>
-          </CoffeeInfo>
-          <CoffeeInfo>
-            <img src="public/latte.png" alt="" />
-            <div>
-              <p>Expresso Tradicional</p>
-              <ActionItemPayment>
-                <Counter>
-                  <button>-</button>
-                  <span>1</span>
-                  <button>+</button>
-                </Counter>
-                <ButtonRemove>
-                  <Trash />
-                  Remover
-                </ButtonRemove>
-              </ActionItemPayment>
-            </div>
-            <strong>R$ 9,90</strong>
-          </CoffeeInfo>
+          {cartItems.map((coffee) => {
+            return (
+              <CoffeeInfo key={coffee.id}>
+                <img src={`public/${coffee.photo}`} alt="" />
+                <div>
+                  <p>{coffee.name}</p>
+                  <ActionItemPayment>
+                    <Counter>
+                      <button>-</button>
+                      <span>{coffee.quantity}</span>
+                      <button>+</button>
+                    </Counter>
+                    <ButtonRemove>
+                      <Trash />
+                      Remover
+                    </ButtonRemove>
+                  </ActionItemPayment>
+                </div>
+                <strong>
+                  {new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  }).format(coffee.price)}
+                </strong>
+              </CoffeeInfo>
+            )
+          })}
 
           <footer>
             <div>

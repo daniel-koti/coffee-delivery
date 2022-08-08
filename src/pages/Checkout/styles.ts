@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const CheckoutPageContainer = styled.form`
+  padding-top: 9.4rem;
   margin-top: 4rem;
   display: grid;
   grid-template-columns: 1.5fr 1fr;

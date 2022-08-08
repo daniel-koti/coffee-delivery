@@ -7,6 +7,8 @@ import {
 } from './styles'
 
 import { ShoppingCart } from 'phosphor-react'
+import { useContext, useState } from 'react'
+import { CartContext } from '../../../../contexts/CartContext'
 
 interface CoffeeItemProps {
   id: number
@@ -15,6 +17,7 @@ interface CoffeeItemProps {
   description: string
   photo: string
   price: number
+  quantity?: number
 }
 
 interface Coffee {
@@ -22,6 +25,29 @@ interface Coffee {
 }
 
 export function CoffeeItem({ item }: Coffee) {
+  const [quantity, setQuantity] = useState(1)
+  const { addCoffeeToCart } = useContext(CartContext)
+
+  function handleAddToCart() {
+    const coffeToAdd = {
+      ...item,
+      price: item.price * quantity,
+      quantity,
+    }
+
+    addCoffeeToCart(coffeToAdd)
+  }
+
+  function incrementQuantity() {
+    setQuantity((state) => state + 1)
+  }
+
+  function decrementQuantity() {
+    if (quantity > 1) {
+      setQuantity((state) => state - 1)
+    }
+  }
+
   return (
     <CoffeeItemContainer>
       <HeaderCoffee>
@@ -37,11 +63,11 @@ export function CoffeeItem({ item }: Coffee) {
       <FooterCoffee>
         R$ <span className="price">{item.price}</span>
         <Counter>
-          <button>-</button>
-          <span>1</span>
-          <button>+</button>
+          <button onClick={decrementQuantity}>-</button>
+          <span>{quantity}</span>
+          <button onClick={incrementQuantity}>+</button>
         </Counter>
-        <Cart>
+        <Cart onClick={handleAddToCart}>
           <ShoppingCart weight="fill" />
         </Cart>
       </FooterCoffee>
