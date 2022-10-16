@@ -1,25 +1,25 @@
 import { CoffeeItem } from './components/CoffeeItem'
 import { Intro } from './components/Intro'
-import { CoffeeList, HomePageContainer } from './styles'
+import { CoffeesContainer, CoffeesGrid } from './styles'
 
 import { coffees } from '../../data/coffees'
 import { Wrapper } from '../../components/Wrapper'
 
-export function HomePage() {
+export function Home() {
   return (
-    <HomePageContainer>
+    <section>
       <Intro />
 
       <Wrapper>
-        <CoffeeList>
+        <CoffeesContainer>
           <h2>Nossos cafés</h2>
-          <div className="coffee-container">
+          <CoffeesGrid>
             {coffees.map((coffee) => {
               return <CoffeeItem item={coffee} key={coffee.id} />
             })}
-          </div>
-        </CoffeeList>
+          </CoffeesGrid>
+        </CoffeesContainer>
       </Wrapper>
-    </HomePageContainer>
+    </section>
   )
 }

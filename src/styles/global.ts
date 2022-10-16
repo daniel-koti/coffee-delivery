@@ -28,6 +28,10 @@ export const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
 
+  h1, h2 , h3, h4, h5, h6, strong {
+    font-family: 'Baloo 2', sans-serif;
+  }
+
   ::-webkit-scrollbar {
     width: 0.5rem;
   }
