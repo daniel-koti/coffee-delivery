@@ -29,7 +29,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
-    width: 0.2rem;
+    width: 0.5rem;
   }
 
   ::-webkit-scrollbar-track {
@@ -38,6 +38,6 @@ export const GlobalStyle = createGlobalStyle`
 
   ::-webkit-scrollbar-thumb {
     border-radius: 3.2rem;
-    background: ${({ theme }) => theme.colors['brand-purple']}
+    background: ${({ theme }) => theme.colors['brand-yellow-dark']}
   }
 `
