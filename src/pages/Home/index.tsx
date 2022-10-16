@@ -1,11 +1,15 @@
+import { useContext } from 'react'
+
 import { CoffeeItem } from './components/CoffeeItem'
 import { Intro } from './components/Intro'
+import { Wrapper } from '../../components/Wrapper'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
+
 import { CoffeesContainer, CoffeesGrid } from './styles'
 
-import { coffees } from '../../data/coffees'
-import { Wrapper } from '../../components/Wrapper'
-
 export function Home() {
+  const { coffees } = useContext(CoffeeContext)
+
   return (
     <section>
       <Intro />
@@ -15,7 +19,7 @@ export function Home() {
           <h2>Nossos cafés</h2>
           <CoffeesGrid>
             {coffees.map((coffee) => {
-              return <CoffeeItem item={coffee} key={coffee.id} />
+              return <CoffeeItem coffee={coffee} key={coffee.id} />
             })}
           </CoffeesGrid>
         </CoffeesContainer>
