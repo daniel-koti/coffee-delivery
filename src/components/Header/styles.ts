@@ -8,12 +8,12 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   background-color: ${(props) => props.theme.colors['base-background']};
+`
 
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+export const HeaderContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export const HeaderButtonsContainer = styled.div`
