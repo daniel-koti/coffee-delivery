@@ -1,15 +1,16 @@
+import { useContext, useState } from 'react'
+
 import {
   CoffeeItemContainer,
-  Counter,
   FooterCoffee,
   HeaderCoffee,
   Cart,
+  Price,
 } from './styles'
-
 import { ShoppingCart } from 'phosphor-react'
-import { useContext, useState } from 'react'
 import { CartContext } from '../../../../contexts/CartContext'
 import { Coffee } from '../../../../data/coffees'
+import { Actions } from '../../../../components/Actions'
 
 interface CoffeeItemProps {
   coffee: Coffee
@@ -37,15 +38,13 @@ export function CoffeeItem({ coffee }: CoffeeItemProps) {
       <h4>{coffee.name}</h4>
       <p>{coffee.description}</p>
       <FooterCoffee>
-        R$ <span className="price">{coffee.price}</span>
-        <Counter>
-          <button onClick={decrementQuantity}>-</button>
-          <span>{coffee.amount}</span>
-          <button onClick={incrementQuantity}>+</button>
-        </Counter>
-        <Cart onClick={handleAddToCart}>
-          <ShoppingCart weight="fill" />
-        </Cart>
+        <Price>{coffee.price}</Price>
+        <div>
+          <Actions />
+          <Cart onClick={handleAddToCart}>
+            <ShoppingCart weight="fill" />
+          </Cart>
+        </div>
       </FooterCoffee>
     </CoffeeItemContainer>
   )

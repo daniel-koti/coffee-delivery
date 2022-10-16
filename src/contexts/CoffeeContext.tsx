@@ -11,14 +11,12 @@ interface CoffeeContextType {
 
 export const CoffeeContext = createContext({} as CoffeeContextType)
 
-export function CoffeeContextProvider({
-  children,
-}: CoffeeContextProviderProps) {
+export function CoffeeContextProvider(props: CoffeeContextProviderProps) {
   const [coffees, setCoffees] = useState<Coffee[]>(coffeesList)
 
   return (
     <CoffeeContext.Provider value={{ coffees }}>
-      {children}
+      {props.children}
     </CoffeeContext.Provider>
   )
 }

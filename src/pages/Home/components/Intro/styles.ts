@@ -30,7 +30,7 @@ export const IntroContent = styled.div`
 
   section {
     h1 {
-      font-family: 'Baloo 2', sans-serif;
+      color: ${(props) => props.theme.colors['base-title']};
       font-size: 4.8rem;
       font-weight: 800;
       line-height: 130%;

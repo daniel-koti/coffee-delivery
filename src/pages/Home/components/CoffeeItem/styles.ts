@@ -57,6 +57,7 @@ export const HeaderCoffee = styled.header`
 `
 
 export const FooterCoffee = styled.footer`
+  width: 100%;
   margin-top: 3.2rem;
   display: flex;
   align-items: center;
@@ -64,46 +65,18 @@ export const FooterCoffee = styled.footer`
   font-size: 1.4rem;
   color: ${(props) => props.theme.colors['base-text']};
 
-  span.price {
-    font-family: 'Baloo 2', sans-serif;
-    font-size: 2.4rem;
-    margin-left: 0.1rem;
+  > div {
+    display: flex;
+    align-items: center;
+
+    gap: 0.8rem;
   }
 `
 
-export const Counter = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 7.2rem;
-  height: 3.8rem;
-  background: ${(props) => props.theme.colors['base-button']};
-  margin-left: 2.3rem;
-
-  border-radius: 0.6rem;
-
-  button {
-    flex: 1;
-    height: 100%;
-    border: none;
-    cursor: pointer;
-    background: ${(props) => props.theme.colors['base-button']};
-    color: ${(props) => props.theme.colors['brand-purple']};
-    border-radius: 0.6rem;
-
-    padding: 0 1rem;
-
-    &:hover {
-      color: ${(props) => props.theme.colors['brand-purple-dark']};
-    }
-  }
-
-  span {
-    font-weight: 400;
-    color: ${(props) => props.theme.colors['base-title']};
-    background: ${(props) => props.theme.colors['base-button']};
-    flex: 1;
-  }
+export const Price = styled.span`
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 2.4rem;
+  margin-left: 0.1rem;
 `
 
 export const Cart = styled.button`
