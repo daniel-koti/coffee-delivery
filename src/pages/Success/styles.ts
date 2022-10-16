@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 export const SuccessPageContainer = styled.div`
+  margin-top: 10.4rem;
+  padding-top: 2rem;
+
   header {
     margin-top: 8rem;
 

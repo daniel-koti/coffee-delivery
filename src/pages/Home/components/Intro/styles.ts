@@ -3,7 +3,6 @@ import introBackground from '../../../../assets/intro-background.png'
 import { rgba } from 'polished'
 
 export const IntroContainer = styled.section`
-  padding-top: 9.4rem;
   width: 100%;
   height: 54.4rem;
   background: ${({ theme }) => `url(${introBackground}) no-repeat center,
@@ -18,6 +17,7 @@ export const IntroContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 10.4rem;
 `
 
 export const IntroContent = styled.div`

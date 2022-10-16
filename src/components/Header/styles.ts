@@ -16,7 +16,7 @@ export const HeaderContent = styled.div`
   align-items: center;
 `
 
-export const HeaderButtonsContainer = styled.div`
+export const InfoHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 1.2rem;
