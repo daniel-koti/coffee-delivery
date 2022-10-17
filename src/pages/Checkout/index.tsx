@@ -18,8 +18,6 @@ import {
 import { Wrapper } from '../../components/Wrapper'
 
 export function CheckoutPage() {
-  const { cartItems } = useContext(CartContext)
-
   return (
     <Wrapper>
       <CheckoutPageContainer>
@@ -73,7 +71,7 @@ export function CheckoutPage() {
         <section>
           <h3>Cafés selecionados</h3>
           <CoffeesSelected>
-            {cartItems.map((coffee) => {
+            {/* {cartItems.map((coffee) => {
               return (
                 <CoffeeInfo key={coffee.id}>
                   <img src={`public/${coffee.photo}`} alt="" />
@@ -99,7 +97,7 @@ export function CheckoutPage() {
                   </strong>
                 </CoffeeInfo>
               )
-            })}
+            })} */}
 
             <footer>
               <div>

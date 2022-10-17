@@ -13,19 +13,17 @@ import { ShoppingCart } from 'phosphor-react'
 import { CartContext } from '../../../../contexts/CartContext'
 import { Coffee } from '../../../../data/coffees'
 import { Actions } from '../../../../components/Actions'
+import { CoffeeContext } from '../../../../contexts/CoffeeContext'
 
 interface CoffeeItemProps {
   coffee: Coffee
 }
 
 export function CoffeeItem({ coffee }: CoffeeItemProps) {
-  const { addCoffeeToCart } = useContext(CartContext)
+  const { incrementCoffeeAmount, decrementCoffeeAmount } =
+    useContext(CoffeeContext)
 
   function handleAddToCart() {}
-
-  function incrementQuantity() {}
-
-  function decrementQuantity() {}
 
   return (
     <CoffeeItemContainer>
@@ -45,8 +43,12 @@ export function CoffeeItem({ coffee }: CoffeeItemProps) {
           <span>{coffee.price}</span>
         </Price>
         <ActionsFooterContent>
-          <Actions />
-          <Cart onClick={handleAddToCart}>
+          <Actions
+            quantity={coffee.amount}
+            handleIncrement={() => incrementCoffeeAmount(coffee.id)}
+            handleDecrement={() => decrementCoffeeAmount(coffee.id)}
+          />
+          <Cart disabled={!coffee.amount} onClick={handleAddToCart}>
             <ShoppingCart weight="fill" />
           </Cart>
         </ActionsFooterContent>

@@ -103,8 +103,14 @@ export const Cart = styled.button`
 
   margin-left: 0.8rem;
   color: ${(props) => props.theme.colors['base-white']};
+  transition: all 0.2s;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: ${(props) => props.theme.colors['brand-purple']};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    filter: brightness(0.7);
   }
 `
