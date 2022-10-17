@@ -6,7 +6,9 @@ import {
   HeaderCoffee,
   Cart,
   Price,
+  ActionsFooterContent,
 } from './styles'
+
 import { ShoppingCart } from 'phosphor-react'
 import { CartContext } from '../../../../contexts/CartContext'
 import { Coffee } from '../../../../data/coffees'
@@ -38,13 +40,16 @@ export function CoffeeItem({ coffee }: CoffeeItemProps) {
       <h4>{coffee.name}</h4>
       <p>{coffee.description}</p>
       <FooterCoffee>
-        <Price>{coffee.price}</Price>
-        <div>
+        <Price>
+          <span>R$</span>
+          <span>{coffee.price}</span>
+        </Price>
+        <ActionsFooterContent>
           <Actions />
           <Cart onClick={handleAddToCart}>
             <ShoppingCart weight="fill" />
           </Cart>
-        </div>
+        </ActionsFooterContent>
       </FooterCoffee>
     </CoffeeItemContainer>
   )

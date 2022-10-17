@@ -64,19 +64,30 @@ export const FooterCoffee = styled.footer`
   justify-content: space-between;
   font-size: 1.4rem;
   color: ${(props) => props.theme.colors['base-text']};
-
-  > div {
-    display: flex;
-    align-items: center;
-
-    gap: 0.8rem;
-  }
 `
 
-export const Price = styled.span`
-  font-family: 'Baloo 2', sans-serif;
-  font-size: 2.4rem;
-  margin-left: 0.1rem;
+export const ActionsFooterContent = styled.div`
+  display: flex;
+  align-items: center;
+
+  gap: 0.8rem;
+`
+
+export const Price = styled.div`
+  display: flex;
+  align-items: center;
+
+  > span:first-child {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1.82rem;
+  }
+
+  > span + span {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 2.4rem;
+    margin-left: 0.1rem;
+  }
 `
 
 export const Cart = styled.button`
