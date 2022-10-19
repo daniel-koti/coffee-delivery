@@ -16,8 +16,12 @@ import {
   ButtonRemove,
 } from './styles'
 import { Wrapper } from '../../components/Wrapper'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
+import { Actions } from '../../components/Actions'
 
 export function CheckoutPage() {
+  const { cartItems } = useContext(CoffeeContext)
+
   return (
     <Wrapper>
       <CheckoutPageContainer>
@@ -71,18 +75,18 @@ export function CheckoutPage() {
         <section>
           <h3>Cafés selecionados</h3>
           <CoffeesSelected>
-            {/* {cartItems.map((coffee) => {
+            {cartItems.map((coffee) => {
               return (
                 <CoffeeInfo key={coffee.id}>
                   <img src={`public/${coffee.photo}`} alt="" />
                   <div>
                     <p>{coffee.name}</p>
                     <ActionItemPayment>
-                      <Counter>
-                        <button>-</button>
-                        <span>{coffee.quantity}</span>
-                        <button>+</button>
-                      </Counter>
+                      <Actions
+                        quantity={coffee.amount}
+                        handleIncrement={() => console.log('')}
+                        handleDecrement={() => console.log('')}
+                      />
                       <ButtonRemove>
                         <Trash />
                         Remover
@@ -93,12 +97,11 @@ export function CheckoutPage() {
                     {new Intl.NumberFormat('pt-BR', {
                       style: 'currency',
                       currency: 'BRL',
-                    }).format(coffee.price)}
+                    }).format(coffee.price * coffee.amount)}
                   </strong>
                 </CoffeeInfo>
               )
-            })} */}
-
+            })}
             <footer>
               <div>
                 <span>Total de itens</span>

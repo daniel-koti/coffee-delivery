@@ -15,11 +15,11 @@ export function Actions({
 }: ActionsProps) {
   return (
     <ActionsContainer>
-      <button onClick={handleDecrement}>
+      <button type="button" onClick={handleDecrement}>
         <Minus size={14} weight="bold" />
       </button>
       <span>{quantity}</span>
-      <button onClick={handleIncrement}>
+      <button type="button" onClick={handleIncrement}>
         <Plus size={14} weight="bold" />
       </button>
     </ActionsContainer>
