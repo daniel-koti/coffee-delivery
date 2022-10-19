@@ -20,10 +20,13 @@ interface CoffeeItemProps {
 }
 
 export function CoffeeItem({ coffee }: CoffeeItemProps) {
-  const { incrementCoffeeAmount, decrementCoffeeAmount } =
+  const { incrementCoffeeAmount, decrementCoffeeAmount, addCoffeeToCart } =
     useContext(CoffeeContext)
 
-  function handleAddToCart() {}
+  function handleAddToCart() {
+    addCoffeeToCart(coffee)
+    console.log('Adicionou')
+  }
 
   return (
     <CoffeeItemContainer>

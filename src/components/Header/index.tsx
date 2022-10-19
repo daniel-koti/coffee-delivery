@@ -3,13 +3,13 @@ import { MapPin, ShoppingCart } from 'phosphor-react'
 
 import { HeaderContainer, InfoHeader, HeaderContent } from './styles'
 import { useContext } from 'react'
-import { CartContext } from '../../contexts/CartContext'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
 import { Wrapper } from '../Wrapper'
 
 import logoImg from '../../assets/logo.svg'
 
 export function Header() {
-  const { cartQuantity } = useContext(CartContext)
+  const { cartQuantity } = useContext(CoffeeContext)
 
   return (
     <HeaderContainer>

@@ -8,6 +8,9 @@ interface CoffeeContextProviderProps {
 
 interface CoffeeContextType {
   coffees: Coffee[]
+  cartItems: Coffee[]
+  cartQuantity: number
+  addCoffeeToCart: (coffee: Coffee) => void
   incrementCoffeeAmount: (id: number) => void
   decrementCoffeeAmount: (id: number) => void
 }
@@ -16,6 +19,25 @@ export const CoffeeContext = createContext({} as CoffeeContextType)
 
 export function CoffeeContextProvider(props: CoffeeContextProviderProps) {
   const [coffees, setCoffees] = useState<Coffee[]>(coffeesList)
+  const [cartItems, setCartItems] = useState<Coffee[]>([])
+
+  const cartQuantity = cartItems.length
+
+  function addCoffeeToCart(coffee: Coffee) {
+    const isCoffeeAlreadyInCart = cartItems.findIndex(
+      (item) => item.id === coffee.id,
+    )
+
+    const newCart = produce(cartItems, (draft) => {
+      if (isCoffeeAlreadyInCart < 0) {
+        draft.push(coffee)
+      } else {
+        draft[isCoffeeAlreadyInCart].amount = coffee.amount
+      }
+    })
+
+    setCartItems(newCart)
+  }
 
   function incrementCoffeeAmount(idCoffee: number) {
     const incrementedCoffees = produce(coffees, (draft) => {
@@ -50,7 +72,14 @@ export function CoffeeContextProvider(props: CoffeeContextProviderProps) {
 
   return (
     <CoffeeContext.Provider
-      value={{ coffees, incrementCoffeeAmount, decrementCoffeeAmount }}
+      value={{
+        coffees,
+        cartItems,
+        cartQuantity,
+        incrementCoffeeAmount,
+        decrementCoffeeAmount,
+        addCoffeeToCart,
+      }}
     >
       {props.children}
     </CoffeeContext.Provider>
