@@ -11,8 +11,8 @@ interface CoffeeContextType {
   cartItems: Coffee[]
   cartQuantity: number
   addCoffeeToCart: (coffee: Coffee) => void
-  incrementCoffeeAmount: (id: number) => void
-  decrementCoffeeAmount: (id: number) => void
+  incrementCoffeeAmount: (id: number, type: 'coffees' | 'cart') => void
+  decrementCoffeeAmount: (id: number, type: 'coffees' | 'cart') => void
 }
 
 export const CoffeeContext = createContext({} as CoffeeContextType)
@@ -39,35 +39,66 @@ export function CoffeeContextProvider(props: CoffeeContextProviderProps) {
     setCartItems(newCart)
   }
 
-  function incrementCoffeeAmount(idCoffee: number) {
-    const incrementedCoffees = produce(coffees, (draft) => {
-      const findCoffeeToIncrementAmount = draft.find(
-        (coffee) => coffee.id === idCoffee,
-      )
+  function incrementCoffeeAmount(id: number, type: 'coffees' | 'cart') {
+    if (type === 'coffees') {
+      const incrementedCoffees = produce(coffees, (draft) => {
+        const findCoffeeToIncrementAmount = draft.find(
+          (coffee) => coffee.id === id,
+        )
 
-      if (findCoffeeToIncrementAmount) {
-        findCoffeeToIncrementAmount.amount += 1
-      }
-    })
+        if (findCoffeeToIncrementAmount) {
+          findCoffeeToIncrementAmount.amount += 1
+        }
+      })
 
-    setCoffees(incrementedCoffees)
+      setCoffees(incrementedCoffees)
+    } else {
+      const incrementedCoffees = produce(cartItems, (draft) => {
+        const findCoffeeToIncrementAmount = draft.find(
+          (coffee) => coffee.id === id,
+        )
+
+        if (findCoffeeToIncrementAmount) {
+          findCoffeeToIncrementAmount.amount += 1
+        }
+      })
+
+      setCartItems(incrementedCoffees)
+    }
   }
 
-  function decrementCoffeeAmount(idCoffee: number) {
-    const decrementedCoffees = produce(coffees, (draft) => {
-      const findCoffeeToDecrementAmount = draft.find(
-        (coffee) => coffee.id === idCoffee,
-      )
+  function decrementCoffeeAmount(idCoffee: number, type: 'coffees' | 'cart') {
+    if (type === 'coffees') {
+      const decrementedCoffees = produce(coffees, (draft) => {
+        const findCoffeeToDecrementAmount = draft.find(
+          (coffee) => coffee.id === idCoffee,
+        )
 
-      if (
-        findCoffeeToDecrementAmount &&
-        findCoffeeToDecrementAmount.amount !== 0
-      ) {
-        findCoffeeToDecrementAmount.amount -= 1
-      }
-    })
+        if (
+          findCoffeeToDecrementAmount &&
+          findCoffeeToDecrementAmount.amount !== 0
+        ) {
+          findCoffeeToDecrementAmount.amount -= 1
+        }
+      })
 
-    setCoffees(decrementedCoffees)
+      setCoffees(decrementedCoffees)
+    } else {
+      const decrementedCoffees = produce(cartItems, (draft) => {
+        const findCoffeeToDecrementAmount = draft.find(
+          (coffee) => coffee.id === idCoffee,
+        )
+
+        if (
+          findCoffeeToDecrementAmount &&
+          findCoffeeToDecrementAmount.amount !== 0
+        ) {
+          findCoffeeToDecrementAmount.amount -= 1
+        }
+      })
+
+      setCartItems(decrementedCoffees)
+    }
   }
 
   return (

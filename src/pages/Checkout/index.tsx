@@ -20,7 +20,8 @@ import { CoffeeContext } from '../../contexts/CoffeeContext'
 import { Actions } from '../../components/Actions'
 
 export function CheckoutPage() {
-  const { cartItems } = useContext(CoffeeContext)
+  const { cartItems, incrementCoffeeAmount, decrementCoffeeAmount } =
+    useContext(CoffeeContext)
 
   return (
     <Wrapper>
@@ -84,8 +85,12 @@ export function CheckoutPage() {
                     <ActionItemPayment>
                       <Actions
                         quantity={coffee.amount}
-                        handleIncrement={() => console.log('')}
-                        handleDecrement={() => console.log('')}
+                        handleIncrement={() =>
+                          incrementCoffeeAmount(coffee.id, 'cart')
+                        }
+                        handleDecrement={() =>
+                          decrementCoffeeAmount(coffee.id, 'cart')
+                        }
                       />
                       <ButtonRemove>
                         <Trash />
