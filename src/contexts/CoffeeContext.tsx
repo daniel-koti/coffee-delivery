@@ -13,6 +13,7 @@ interface CoffeeContextType {
   addCoffeeToCart: (coffee: Coffee) => void
   incrementCoffeeAmount: (id: number, type: 'coffees' | 'cart') => void
   decrementCoffeeAmount: (id: number, type: 'coffees' | 'cart') => void
+  removeCoffeeInCart: (id: number) => void
 }
 
 export const CoffeeContext = createContext({} as CoffeeContextType)
@@ -101,6 +102,14 @@ export function CoffeeContextProvider(props: CoffeeContextProviderProps) {
     }
   }
 
+  function removeCoffeeInCart(id: number) {
+    const newCart = produce(cartItems, (draft) => {
+      return draft.filter((coffee) => coffee.id !== id)
+    })
+
+    setCartItems(newCart)
+  }
+
   return (
     <CoffeeContext.Provider
       value={{
@@ -110,6 +119,7 @@ export function CoffeeContextProvider(props: CoffeeContextProviderProps) {
         incrementCoffeeAmount,
         decrementCoffeeAmount,
         addCoffeeToCart,
+        removeCoffeeInCart,
       }}
     >
       {props.children}

@@ -21,8 +21,12 @@ import { Actions } from '../../components/Actions'
 import { formatMoney } from '../../utils/format'
 
 export function CheckoutPage() {
-  const { cartItems, incrementCoffeeAmount, decrementCoffeeAmount } =
-    useContext(CoffeeContext)
+  const {
+    cartItems,
+    incrementCoffeeAmount,
+    decrementCoffeeAmount,
+    removeCoffeeInCart,
+  } = useContext(CoffeeContext)
 
   const sumCoffeePrice = cartItems.reduce((accumulator, item) => {
     return (accumulator += item.price * item.amount)
@@ -101,7 +105,10 @@ export function CheckoutPage() {
                           decrementCoffeeAmount(coffee.id, 'cart')
                         }
                       />
-                      <ButtonRemove>
+                      <ButtonRemove
+                        type="button"
+                        onClick={() => removeCoffeeInCart(coffee.id)}
+                      >
                         <Trash />
                         Remover
                       </ButtonRemove>
