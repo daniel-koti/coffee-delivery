@@ -18,10 +18,19 @@ import {
 import { Wrapper } from '../../components/Wrapper'
 import { CoffeeContext } from '../../contexts/CoffeeContext'
 import { Actions } from '../../components/Actions'
+import { formatMoney } from '../../utils/format'
 
 export function CheckoutPage() {
   const { cartItems, incrementCoffeeAmount, decrementCoffeeAmount } =
     useContext(CoffeeContext)
+
+  const sumCoffeePrice = cartItems.reduce((accumulator, item) => {
+    return (accumulator += item.price * item.amount)
+  }, 0)
+
+  const delivery = 3.5
+
+  const totalPrice = sumCoffeePrice ? sumCoffeePrice + delivery : 0
 
   return (
     <Wrapper>
@@ -98,12 +107,7 @@ export function CheckoutPage() {
                       </ButtonRemove>
                     </ActionItemPayment>
                   </div>
-                  <strong>
-                    {new Intl.NumberFormat('pt-BR', {
-                      style: 'currency',
-                      currency: 'BRL',
-                    }).format(coffee.price * coffee.amount)}
-                  </strong>
+                  <strong>{formatMoney(coffee.price * coffee.amount)}</strong>
                 </CoffeeInfo>
               )
             })}
@@ -115,9 +119,9 @@ export function CheckoutPage() {
               </div>
 
               <div>
-                <span className="total-items">R$ 29,70</span>
-                <span>R$ 3,50</span>
-                <strong>R$ 33,20</strong>
+                <span>{formatMoney(sumCoffeePrice)}</span>
+                <span>{formatMoney(delivery)}</span>
+                <strong>{formatMoney(totalPrice)}</strong>
               </div>
             </footer>
 
