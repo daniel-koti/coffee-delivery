@@ -9,7 +9,6 @@ import {
   HeaderAddress,
   HeaderPayment,
   CoffeeInfo,
-  Counter,
   ActionItemPayment,
   InputGridContainer,
   PaymentMethodContainer,
