@@ -1,26 +1,20 @@
-import { MapPinLine, CurrencyDollar, Trash, CreditCard } from 'phosphor-react'
-import { PaymentMethodInput } from './components/PaymentMethodInput'
 import { useContext } from 'react'
+import { useForm } from 'react-hook-form'
 
-import {
-  AddressContainer,
-  CheckoutPageContainer,
-  CoffeesSelected,
-  HeaderAddress,
-  HeaderPayment,
-  CoffeeInfo,
-  ActionItemPayment,
-  InputGridContainer,
-  PaymentMethodContainer,
-  ButtonRemove,
-  Title,
-  InputContainer,
-  Grid,
-} from './styles'
 import { Wrapper } from '../../components/Wrapper'
 import { CoffeeContext } from '../../contexts/CoffeeContext'
 import { Actions } from '../../components/Actions'
 import { formatMoney } from '../../utils/format'
+import { FormFields } from './components/FormFields'
+import {
+  CheckoutPageContainer,
+  CoffeesSelected,
+  CoffeeInfo,
+  ActionItemPayment,
+  ButtonRemove,
+  Title,
+} from './styles'
+import { Trash } from 'phosphor-react'
 
 export function CheckoutPage() {
   const {
@@ -38,83 +32,16 @@ export function CheckoutPage() {
 
   const totalPrice = sumCoffeePrice ? sumCoffeePrice + delivery : 0
 
+  const { register, handleSubmit, watch } = useForm()
+
+  function finalizeOrder(data: any) {
+    console.log(data)
+  }
+
   return (
     <Wrapper>
-      <CheckoutPageContainer>
-        <section>
-          <Title>Complete seu pedido</Title>
-          <AddressContainer>
-            <HeaderAddress>
-              <MapPinLine size={22} />
-              <div>
-                <p>Endereço de entrega</p>
-                <span>Informe o endereço onde deseja receber seu pedido</span>
-              </div>
-            </HeaderAddress>
-
-            <InputGridContainer>
-              <Grid>
-                <InputContainer type="text" placeholder="CEP" size={29} />
-              </Grid>
-              <Grid>
-                <InputContainer type="text" placeholder="Rua" size={100} />
-              </Grid>
-              <Grid>
-                <InputContainer type="number" placeholder="Número" size={29} />
-                <InputContainer
-                  type="text"
-                  placeholder="Complemento"
-                  size={69}
-                  spacing={2}
-                />
-              </Grid>
-              <Grid>
-                <InputContainer type="text" placeholder="Bairro" size={29} />
-                <InputContainer
-                  type="text"
-                  placeholder="Cidade"
-                  size={57}
-                  spacing={2}
-                />
-                <InputContainer
-                  type="text"
-                  placeholder="UF"
-                  size={10}
-                  spacing={2}
-                />
-              </Grid>
-            </InputGridContainer>
-          </AddressContainer>
-          <PaymentMethodContainer>
-            <HeaderPayment>
-              <CurrencyDollar size={22} />
-              <div>
-                <p>Pagamento</p>
-                <span>
-                  O pagamento é feito na entrega. Escolha a forma que deseja
-                  pagar
-                </span>
-              </div>
-            </HeaderPayment>
-            <div>
-              <PaymentMethodInput
-                id="credit_cart"
-                label="Cartão de Crédito"
-                icon={<CreditCard size={16} />}
-              />
-              <PaymentMethodInput
-                id="debit_cart"
-                label="Cartão de Débito"
-                icon={<CreditCard size={16} />}
-              />
-              <PaymentMethodInput
-                id="money"
-                label="Dinheiro"
-                icon={<CreditCard size={16} />}
-              />
-            </div>
-          </PaymentMethodContainer>
-        </section>
+      <CheckoutPageContainer onSubmit={handleSubmit(finalizeOrder)}>
+        <FormFields register={register} />
         <section>
           <Title>Cafés selecionados</Title>
           <CoffeesSelected>

@@ -92,7 +92,7 @@ export function CoffeeContextProvider(props: CoffeeContextProviderProps) {
 
         if (
           findCoffeeToDecrementAmount &&
-          findCoffeeToDecrementAmount.amount !== 0
+          findCoffeeToDecrementAmount.amount > 1
         ) {
           findCoffeeToDecrementAmount.amount -= 1
         }
