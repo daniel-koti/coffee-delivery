@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+interface InputProps {
+  size: number
+  spacing?: number
+}
+
 export const CheckoutPageContainer = styled.form`
   padding-top: 4rem;
   margin-top: 10.4rem;
@@ -7,15 +12,6 @@ export const CheckoutPageContainer = styled.form`
   grid-template-columns: 1.5fr 1fr;
 
   gap: 3.2rem;
-
-  h3 {
-    font-family: 'Baloo 2', sans-serif;
-    font-family: 1.8rem;
-    font-weight: 800;
-    line-height: 2.34rem;
-
-    color: ${(props) => props.theme.colors['base-subtitle']};
-  }
 
   button[type='submit'] {
     cursor: pointer;
@@ -38,6 +34,15 @@ export const CheckoutPageContainer = styled.form`
       background: ${(props) => props.theme.colors['brand-yellow-dark']};
     }
   }
+`
+
+export const Title = styled.h3`
+  font-family: 'Baloo 2', sans-serif;
+  font-family: 1.8rem;
+  font-weight: 800;
+  line-height: 2.34rem;
+
+  color: ${(props) => props.theme.colors['base-subtitle']};
 `
 
 const BaseHeader = styled.header`
@@ -68,7 +73,7 @@ export const HeaderAddress = styled(BaseHeader)`
 
 export const HeaderPayment = styled(BaseHeader)`
   svg {
-    color: ${(props) => props.theme.colors['brand-purple-dark']};
+    color: ${(props) => props.theme.colors['brand-purple']};
   }
 `
 
@@ -86,71 +91,31 @@ export const InputGridContainer = styled.div`
   flex-direction: column;
 
   gap: 1.6rem;
+`
 
-  input {
-    background: ${(props) => props.theme.colors['base-button']};
-    border: 1px solid #e6e5e5;
-    padding: 1.2rem;
+export const Grid = styled.div`
+  width: 100%;
+`
 
-    font-size: 1.4rem;
-    border-radius: 0.4rem;
-    color: ${(props) => props.theme.colors['base-text']};
+export const InputContainer = styled.input<InputProps>`
+  background: ${(props) => props.theme.colors['base-button']};
+  border: 1px solid #e6e5e5;
+  padding: 1.2rem;
 
-    &:focus {
-      border: 1px solid ${(props) => props.theme.colors['brand-yellow-dark']};
-    }
+  font-size: 1.4rem;
+  border-radius: 0.4rem;
+  color: ${(props) => props.theme.colors['base-text']};
 
-    &::placeholder {
-      color: ${(props) => props.theme.colors['base-label']};
-    }
+  &:focus {
+    border: 1px solid ${(props) => props.theme.colors['brand-yellow-dark']};
   }
 
-  .grid-1.sm {
-    width: 100%;
-
-    input {
-      width: 30%;
-    }
+  &::placeholder {
+    color: ${(props) => props.theme.colors['base-label']};
   }
 
-  .grid-1.full {
-    width: 100%;
-
-    input {
-      width: 100%;
-    }
-  }
-
-  .grid-2 {
-    width: 100%;
-
-    input:nth-child(1) {
-      width: 29%;
-      margin-right: 2%;
-    }
-
-    input:nth-child(2) {
-      width: 69%;
-    }
-  }
-
-  .grid-3 {
-    width: 100%;
-
-    input:nth-child(1) {
-      width: 29%;
-      margin-right: 2%;
-    }
-
-    input:nth-child(2) {
-      width: 57%;
-      margin-right: 2%;
-    }
-
-    input:nth-child(3) {
-      width: 10%;
-    }
-  }
+  width: ${(props) => props.size}%;
+  margin-left: ${(props) => props.spacing}%;
 `
 
 export const PaymentMethodContainer = styled.footer`
@@ -160,6 +125,7 @@ export const PaymentMethodContainer = styled.footer`
 
   > div {
     display: flex;
+    align-items: center;
     gap: 1.2rem;
   }
 `

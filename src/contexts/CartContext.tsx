@@ -28,8 +28,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       (cartItem) => cartItem.id === coffee.id,
     )
 
-    // draft faz é uma cópia do state antigo, que podemos manipular
-
     const newCart = produce(cartItems, (draft) => {
       if (isCoffeeInCart < 0) {
         draft.push(coffee)

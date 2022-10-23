@@ -1,7 +1,7 @@
-import { MapPinLine, CurrencyDollar, Trash, Minus, Plus } from 'phosphor-react'
+import { MapPinLine, CurrencyDollar, Trash, CreditCard } from 'phosphor-react'
 import { PaymentMethodInput } from './components/PaymentMethodInput'
 import { useContext } from 'react'
-import { CartContext } from '../../contexts/CartContext'
+
 import {
   AddressContainer,
   CheckoutPageContainer,
@@ -13,6 +13,9 @@ import {
   InputGridContainer,
   PaymentMethodContainer,
   ButtonRemove,
+  Title,
+  InputContainer,
+  Grid,
 } from './styles'
 import { Wrapper } from '../../components/Wrapper'
 import { CoffeeContext } from '../../contexts/CoffeeContext'
@@ -39,7 +42,7 @@ export function CheckoutPage() {
     <Wrapper>
       <CheckoutPageContainer>
         <section>
-          <h3>Complete seu pedido</h3>
+          <Title>Complete seu pedido</Title>
           <AddressContainer>
             <HeaderAddress>
               <MapPinLine size={22} />
@@ -50,21 +53,36 @@ export function CheckoutPage() {
             </HeaderAddress>
 
             <InputGridContainer>
-              <div className="grid-1 sm">
-                <input type="text" placeholder="CEP" />
-              </div>
-              <div className="grid-1 full">
-                <input type="text" placeholder="Rua" />
-              </div>
-              <div className="grid-2">
-                <input type="number" placeholder="Número" />
-                <input type="text" placeholder="Complemento" />
-              </div>
-              <div className="grid-3">
-                <input type="text" placeholder="Bairro" />
-                <input type="text" placeholder="Cidade" />
-                <input type="text" placeholder="UF" />
-              </div>
+              <Grid>
+                <InputContainer type="text" placeholder="CEP" size={29} />
+              </Grid>
+              <Grid>
+                <InputContainer type="text" placeholder="Rua" size={100} />
+              </Grid>
+              <Grid>
+                <InputContainer type="number" placeholder="Número" size={29} />
+                <InputContainer
+                  type="text"
+                  placeholder="Complemento"
+                  size={69}
+                  spacing={2}
+                />
+              </Grid>
+              <Grid>
+                <InputContainer type="text" placeholder="Bairro" size={29} />
+                <InputContainer
+                  type="text"
+                  placeholder="Cidade"
+                  size={57}
+                  spacing={2}
+                />
+                <InputContainer
+                  type="text"
+                  placeholder="UF"
+                  size={10}
+                  spacing={2}
+                />
+              </Grid>
             </InputGridContainer>
           </AddressContainer>
           <PaymentMethodContainer>
@@ -79,14 +97,26 @@ export function CheckoutPage() {
               </div>
             </HeaderPayment>
             <div>
-              <PaymentMethodInput />
-              <PaymentMethodInput />
-              <PaymentMethodInput />
+              <PaymentMethodInput
+                id="credit_cart"
+                label="Cartão de Crédito"
+                icon={<CreditCard size={16} />}
+              />
+              <PaymentMethodInput
+                id="debit_cart"
+                label="Cartão de Débito"
+                icon={<CreditCard size={16} />}
+              />
+              <PaymentMethodInput
+                id="money"
+                label="Dinheiro"
+                icon={<CreditCard size={16} />}
+              />
             </div>
           </PaymentMethodContainer>
         </section>
         <section>
-          <h3>Cafés selecionados</h3>
+          <Title>Cafés selecionados</Title>
           <CoffeesSelected>
             {cartItems.map((coffee) => {
               return (
