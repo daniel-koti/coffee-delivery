@@ -25,8 +25,13 @@ export const CheckoutPageContainer = styled.form`
     line-height: 160%;
     transition: background 0.2s;
 
-    &:hover {
+    &:not(:disabled):hover {
       background: ${(props) => props.theme.colors['brand-yellow-dark']};
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      filter: brightness(0.7);
     }
   }
 `

@@ -1,6 +1,7 @@
 import { CreditCard, CurrencyDollar, MapPinLine } from 'phosphor-react'
+import { FieldValues, useFormContext, UseFormRegister } from 'react-hook-form'
 import { useTheme } from 'styled-components'
-import { HeaderInputForm } from '../../../../components/HeaderInputForm'
+import { HeaderInputForm } from '../HeaderInputForm'
 import { PaymentMethodInput } from '../PaymentMethodInput'
 import { PaymentMethodOptions } from '../PaymentMethodOptions'
 import {
@@ -8,16 +9,13 @@ import {
   Grid,
   InputContainer,
   InputGridContainer,
-  PaymentMethodContainer,
+  PaymentContainer,
   Title,
 } from './styles'
 
-interface FormFieldsProps {
-  register: any
-}
-
-export function FormFields({ register }: FormFieldsProps) {
+export function FormFields() {
   const { colors } = useTheme()
+  const { register } = useFormContext()
 
   return (
     <section>
@@ -51,7 +49,7 @@ export function FormFields({ register }: FormFieldsProps) {
               type="number"
               placeholder="Número"
               size={29}
-              {...register('street_number')}
+              {...register('number')}
             />
             <InputContainer
               type="text"
@@ -85,14 +83,14 @@ export function FormFields({ register }: FormFieldsProps) {
           </Grid>
         </InputGridContainer>
       </AddressContainer>
-      <PaymentMethodContainer>
+      <PaymentContainer>
         <HeaderInputForm
           title="Pagamento"
           description="O pagamento é feito na entrega. Escolha a forma que deseja pagar"
           icon={<CurrencyDollar size={22} color={colors['brand-purple']} />}
         />
         <PaymentMethodOptions />
-      </PaymentMethodContainer>
+      </PaymentContainer>
     </section>
   )
 }

@@ -8,6 +8,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   background-color: ${(props) => props.theme.colors['base-background']};
+  z-index: 1;
 `
 
 export const HeaderContent = styled.div`

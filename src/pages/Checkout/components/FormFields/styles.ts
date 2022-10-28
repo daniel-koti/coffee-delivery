@@ -86,7 +86,7 @@ export const InputContainer = styled.input<InputProps>`
   margin-left: ${(props) => props.spacing}%;
 `
 
-export const PaymentMethodContainer = styled.footer`
+export const PaymentContainer = styled.footer`
   background: ${(props) => props.theme.colors['base-card']};
   padding: 4rem;
   border-radius: 0.6rem;
