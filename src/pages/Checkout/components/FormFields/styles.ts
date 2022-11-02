@@ -1,10 +1,5 @@
 import styled from 'styled-components'
 
-interface InputProps {
-  size: number
-  spacing?: number
-}
-
 export const Title = styled.h3`
   font-family: 'Baloo 2', sans-serif;
   font-family: 1.8rem;
@@ -54,36 +49,26 @@ export const HeaderPayment = styled(BaseHeader)`
   }
 `
 
-export const InputGridContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  gap: 1.6rem;
-`
-
 export const Grid = styled.div`
   width: 100%;
-`
+  display: grid;
+  grid-template-columns: 20rem 27.6rem 6rem;
+  column-gap: 1.2rem;
+  row-gap: 1.6rem;
+  grid-auto-flow: dense;
 
-export const InputContainer = styled.input<InputProps>`
-  background: ${(props) => props.theme.colors['base-button']};
-  border: 1px solid #e6e5e5;
-  padding: 1.2rem;
-
-  font-size: 1.4rem;
-  border-radius: 0.4rem;
-  color: ${(props) => props.theme.colors['base-text']};
-
-  &:focus {
-    border: 1px solid ${(props) => props.theme.colors['brand-yellow-dark']};
+  .cep {
+    grid-column: span 3;
+    max-width: 20rem;
   }
 
-  &::placeholder {
-    color: ${(props) => props.theme.colors['base-label']};
+  .street {
+    grid-column: span 3;
   }
 
-  width: ${(props) => props.size}%;
-  margin-left: ${(props) => props.spacing}%;
+  .complement {
+    grid-column: span 2;
+  }
 `
 
 export const PaymentContainer = styled.footer`

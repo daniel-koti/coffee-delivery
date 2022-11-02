@@ -1,21 +1,16 @@
-import { CreditCard, CurrencyDollar, MapPinLine } from 'phosphor-react'
-import { FieldValues, useFormContext, UseFormRegister } from 'react-hook-form'
+import { CurrencyDollar, MapPinLine } from 'phosphor-react'
+import { useFormContext } from 'react-hook-form'
 import { useTheme } from 'styled-components'
+import { Input } from '../../../../components/Input'
 import { HeaderInputForm } from '../HeaderInputForm'
-import { PaymentMethodInput } from '../PaymentMethodInput'
 import { PaymentMethodOptions } from '../PaymentMethodOptions'
-import {
-  AddressContainer,
-  Grid,
-  InputContainer,
-  InputGridContainer,
-  PaymentContainer,
-  Title,
-} from './styles'
+import { AddressContainer, Grid, PaymentContainer, Title } from './styles'
 
 export function FormFields() {
   const { colors } = useTheme()
-  const { register } = useFormContext()
+  const { register, formState } = useFormContext()
+
+  const { errors } = formState
 
   return (
     <section>
@@ -27,61 +22,34 @@ export function FormFields() {
           icon={<MapPinLine size={22} color={colors['brand-yellow-dark']} />}
         />
 
-        <InputGridContainer>
-          <Grid>
-            <InputContainer
-              type="text"
-              placeholder="CEP"
-              size={29}
-              {...register('cep')}
-            />
-          </Grid>
-          <Grid>
-            <InputContainer
-              type="text"
-              placeholder="Rua"
-              size={100}
-              {...register('street')}
-            />
-          </Grid>
-          <Grid>
-            <InputContainer
-              type="number"
-              placeholder="Número"
-              size={29}
-              {...register('number')}
-            />
-            <InputContainer
-              type="text"
-              placeholder="Complemento"
-              size={69}
-              spacing={2}
-              {...register('complement')}
-            />
-          </Grid>
-          <Grid>
-            <InputContainer
-              type="text"
-              placeholder="Bairro"
-              size={29}
-              {...register('district')}
-            />
-            <InputContainer
-              type="text"
-              placeholder="Cidade"
-              size={57}
-              spacing={2}
-              {...register('city')}
-            />
-            <InputContainer
-              type="text"
-              placeholder="UF"
-              size={10}
-              spacing={2}
-              {...register('uf')}
-            />
-          </Grid>
-        </InputGridContainer>
+        <Grid>
+          <Input
+            type="text"
+            placeholder="CEP"
+            {...register('cep', {
+              required: 'CEP Obrigatório',
+            })}
+            className="cep"
+          />
+          <Input
+            type="text"
+            placeholder="Rua"
+            {...register('street')}
+            className="street"
+          />
+          <Input type="number" placeholder="Número" {...register('number')} />
+          <Input
+            type="text"
+            placeholder="Complemento"
+            {...register('complement')}
+            className="complement"
+            infoRight="Opcional"
+          />
+
+          <Input type="text" placeholder="Bairro" {...register('district')} />
+          <Input type="text" placeholder="Cidade" {...register('city')} />
+          <Input type="text" placeholder="UF" {...register('uf')} />
+        </Grid>
       </AddressContainer>
       <PaymentContainer>
         <HeaderInputForm
