@@ -1,5 +1,7 @@
 import { useContext } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import * as zod from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Wrapper } from '../../components/Wrapper'
 import { CoffeeContext } from '../../contexts/CoffeeContext'
@@ -16,17 +18,19 @@ import {
 } from './styles'
 import { Trash } from 'phosphor-react'
 
-interface NewCoffeeRequest {
-  cpf: string
-  street: string
-  number: string
-  complement: string
-  district: string
-  city: string
-  paymentMethods: 'debit' | 'credit' | 'money'
-}
-
 const DELIVERY_PRICE = 3.5
+
+const newDeliveryFormValidationSchema = zod.object({
+  cpf: zod.string().min(7, 'Informe o CPF'),
+  street: zod.string().min(1, 'Informe a rua'),
+  number: zod.number().min(1, 'Informe o numero').nonnegative(),
+  complement: zod.string().min(1, 'Informe o complemento'),
+  district: zod.string().min(1, 'Informe o distrito'),
+  city: zod.string().min(1, 'Informe a cidade'),
+  paymentMethods: zod.string(),
+})
+
+type newDeliveryFormData = zod.infer<typeof newDeliveryFormValidationSchema>
 
 export function CheckoutPage() {
   const {
@@ -42,18 +46,18 @@ export function CheckoutPage() {
 
   const totalPrice = sumCoffeePrice ? sumCoffeePrice + DELIVERY_PRICE : 0
 
-  const form = useForm<NewCoffeeRequest>()
+  const newDeliveryForm = useForm<newDeliveryFormData>()
 
-  function handleCompleteOrder(data: NewCoffeeRequest) {
+  const { handleSubmit } = newDeliveryForm
+
+  function handleCompleteOrder(data: newDeliveryFormData) {
     console.log(data)
   }
 
   return (
     <Wrapper>
-      <FormProvider {...form}>
-        <CheckoutPageContainer
-          onSubmit={form.handleSubmit(handleCompleteOrder)}
-        >
+      <FormProvider {...newDeliveryForm}>
+        <CheckoutPageContainer onSubmit={handleSubmit(handleCompleteOrder)}>
           <FormFields />
           <section>
             <Title>Cafés selecionados</Title>
