@@ -1,13 +1,19 @@
 import { MapPin, Timer, CurrencyDollar } from 'phosphor-react'
+import { useLocation } from 'react-router-dom'
 import { OrderDetailsContent, SuccessPageContainer } from './styles'
 
 import motoboyImg from '../../assets/motoboy.svg'
 import { IconCircle } from '../../components/IconCircle'
 import { useTheme } from 'styled-components'
 import { Wrapper } from '../../components/Wrapper'
+import { newDeliveryFormData } from '../Checkout'
 
 export function SuccessPage() {
   const { colors } = useTheme()
+  const location = useLocation()
+
+  const { city, district, paymentMethods } =
+    location.state as newDeliveryFormData
 
   return (
     <Wrapper>
@@ -26,9 +32,9 @@ export function SuccessPage() {
               />
               <div>
                 <p>
-                  Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                  Entrega em <strong>{city}</strong>
                 </p>
-                <p>Farrapos - Porto Alegre, RS</p>
+                <p>{district}</p>
               </div>
             </li>
             <li>
@@ -48,7 +54,7 @@ export function SuccessPage() {
               />
               <div>
                 <p>Pagamento de entrega</p>
-                <strong>Cartão de Crédito</strong>
+                <strong>{paymentMethods}</strong>
               </div>
             </li>
           </OrderDetailsContent>

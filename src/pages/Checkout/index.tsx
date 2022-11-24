@@ -1,7 +1,9 @@
 import { useContext } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from 'react-router-dom'
 
 import { Wrapper } from '../../components/Wrapper'
 import { CoffeeContext } from '../../contexts/CoffeeContext'
@@ -17,6 +19,7 @@ import {
   Title,
 } from './styles'
 import { Trash } from 'phosphor-react'
+import { toast } from 'react-toastify'
 
 const DELIVERY_PRICE = 3.5
 
@@ -45,7 +48,9 @@ const newDeliveryFormValidationSchema = zod.object({
   paymentMethods: zod.enum(['credit', 'debit', 'money']),
 })
 
-type newDeliveryFormData = zod.infer<typeof newDeliveryFormValidationSchema>
+export type newDeliveryFormData = zod.infer<
+  typeof newDeliveryFormValidationSchema
+>
 
 export function CheckoutPage() {
   const {
@@ -53,7 +58,10 @@ export function CheckoutPage() {
     incrementCoffeeAmount,
     decrementCoffeeAmount,
     removeCoffeeInCart,
+    resetCartItems,
   } = useContext(CoffeeContext)
+
+  const navigate = useNavigate()
 
   const sumCoffeePrice = cartItems.reduce((accumulator, item) => {
     return (accumulator += item.price * item.amount)
@@ -71,7 +79,11 @@ export function CheckoutPage() {
   const { handleSubmit } = newDeliveryForm
 
   function handleCompleteOrder(data: newDeliveryFormData) {
-    console.log(data)
+    toast.success('Pedido realizado com sucesso')
+    navigate('/completeOrder', {
+      state: data,
+    })
+    resetCartItems()
   }
 
   return (
