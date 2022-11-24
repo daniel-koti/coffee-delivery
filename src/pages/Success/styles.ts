@@ -58,3 +58,9 @@ export const OrderDetailsContent = styled.ul`
     }
   }
 `
+
+export const ShopItem = styled.span`
+  font-size: 1.6rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+`

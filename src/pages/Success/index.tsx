@@ -1,12 +1,13 @@
 import { MapPin, Timer, CurrencyDollar } from 'phosphor-react'
 import { useLocation } from 'react-router-dom'
-import { OrderDetailsContent, SuccessPageContainer } from './styles'
+import { OrderDetailsContent, SuccessPageContainer, ShopItem } from './styles'
 
 import motoboyImg from '../../assets/motoboy.svg'
 import { IconCircle } from '../../components/IconCircle'
 import { useTheme } from 'styled-components'
 import { Wrapper } from '../../components/Wrapper'
 import { newDeliveryFormData } from '../Checkout'
+import { paymentMethods } from '../Checkout/components/PaymentMethodOptions/index'
 
 export function SuccessPage() {
   const { colors } = useTheme()
@@ -14,6 +15,12 @@ export function SuccessPage() {
 
   const { city, district, paymentMethods } =
     location.state as newDeliveryFormData
+
+  const payment = {
+    money: 'Dinheiro',
+    debit: 'Cartão de débito',
+    credit: 'Cartão de crédito',
+  }
 
   return (
     <Wrapper>
@@ -32,7 +39,7 @@ export function SuccessPage() {
               />
               <div>
                 <p>
-                  Entrega em <strong>{city}</strong>
+                  Entrega em <ShopItem>{city}</ShopItem>
                 </p>
                 <p>{district}</p>
               </div>
@@ -44,7 +51,7 @@ export function SuccessPage() {
               />
               <div>
                 <p>Previsão de entrega</p>
-                <strong>20 min - 30 min</strong>
+                <ShopItem>20 min - 30 min</ShopItem>
               </div>
             </li>
             <li>
@@ -54,7 +61,7 @@ export function SuccessPage() {
               />
               <div>
                 <p>Pagamento de entrega</p>
-                <strong>{paymentMethods}</strong>
+                <ShopItem>{payment[paymentMethods]}</ShopItem>
               </div>
             </li>
           </OrderDetailsContent>
