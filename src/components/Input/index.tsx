@@ -1,8 +1,24 @@
-import { InputContainer, InputWrapper, InputItem, InfoRight } from './styles'
+import {
+  FieldError,
+  FieldErrors,
+  FieldErrorsImpl,
+  Merge,
+} from 'react-hook-form'
+import {
+  InputContainer,
+  InputWrapper,
+  InputItem,
+  InfoRight,
+  ErrorInfo,
+} from './styles'
 import { forwardRef, InputHTMLAttributes } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  error?: any
+  error?:
+    | string
+    | FieldError
+    | Merge<FieldError, FieldErrorsImpl<any>>
+    | undefined
   infoRight?: string
 }
 
@@ -14,7 +30,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <InputItem ref={ref} {...props} />
           {infoRight && <InfoRight>{infoRight}</InfoRight>}
         </InputWrapper>
-        {error && <p>{error}</p>}
+
+        {!!error && <ErrorInfo>{error.toString()}</ErrorInfo>}
       </InputContainer>
     )
   },

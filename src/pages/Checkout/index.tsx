@@ -21,13 +21,28 @@ import { Trash } from 'phosphor-react'
 const DELIVERY_PRICE = 3.5
 
 const newDeliveryFormValidationSchema = zod.object({
-  cpf: zod.string().min(7, 'Informe o CPF'),
+  cep: zod
+    .string({
+      required_error: 'Informe o CEP',
+    })
+    .min(7, 'CEP tem no mínimo 7 caracteres'),
   street: zod.string().min(1, 'Informe a rua'),
-  number: zod.number().min(1, 'Informe o numero').nonnegative(),
-  complement: zod.string().min(1, 'Informe o complemento'),
-  district: zod.string().min(1, 'Informe o distrito'),
+  number: zod
+    .number({
+      invalid_type_error: 'Por favor insira um número válido',
+    })
+    .min(1, 'Número deve ser maior que 0')
+    .nonnegative(),
+  complement: zod.string(),
+  district: zod.string().min(1, 'Informe o bairro'),
   city: zod.string().min(1, 'Informe a cidade'),
-  paymentMethods: zod.string(),
+  uf: zod
+    .string({
+      required_error: 'Informe a UF',
+    })
+    .max(2, 'Não pode inserir mais de 2 caract')
+    .min(2, 'Não pode inserir menos de 2 caract'),
+  paymentMethods: zod.enum(['credit', 'debit', 'money']),
 })
 
 type newDeliveryFormData = zod.infer<typeof newDeliveryFormValidationSchema>
@@ -46,7 +61,12 @@ export function CheckoutPage() {
 
   const totalPrice = sumCoffeePrice ? sumCoffeePrice + DELIVERY_PRICE : 0
 
-  const newDeliveryForm = useForm<newDeliveryFormData>()
+  const newDeliveryForm = useForm<newDeliveryFormData>({
+    resolver: zodResolver(newDeliveryFormValidationSchema),
+    defaultValues: {
+      paymentMethods: 'money',
+    },
+  })
 
   const { handleSubmit } = newDeliveryForm
 

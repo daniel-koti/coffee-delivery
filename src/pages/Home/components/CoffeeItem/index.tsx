@@ -10,7 +10,6 @@ import {
 } from './styles'
 
 import { ShoppingCart } from 'phosphor-react'
-import { CartContext } from '../../../../contexts/CartContext'
 import { Coffee } from '../../../../data/coffees'
 import { Actions } from '../../../../components/Actions'
 import { CoffeeContext } from '../../../../contexts/CoffeeContext'
@@ -25,7 +24,6 @@ export function CoffeeItem({ coffee }: CoffeeItemProps) {
 
   function handleAddToCart() {
     addCoffeeToCart(coffee)
-    console.log('Adicionou')
   }
 
   return (

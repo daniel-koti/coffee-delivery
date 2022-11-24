@@ -8,9 +8,11 @@ import { AddressContainer, Grid, PaymentContainer, Title } from './styles'
 
 export function FormFields() {
   const { colors } = useTheme()
-  const { register, formState } = useFormContext()
 
-  const { errors } = formState
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext()
 
   return (
     <section>
@@ -26,18 +28,26 @@ export function FormFields() {
           <Input
             type="text"
             placeholder="CEP"
-            {...register('cep', {
-              required: 'CEP Obrigatório',
-            })}
+            {...register('cep')}
+            error={errors.cep?.message}
             className="cep"
           />
           <Input
             type="text"
             placeholder="Rua"
             {...register('street')}
+            error={errors.street?.message}
             className="street"
           />
-          <Input type="number" placeholder="Número" {...register('number')} />
+          <Input
+            type="number"
+            placeholder="Número"
+            {...register('number', {
+              valueAsNumber: true,
+            })}
+            error={errors.number?.message}
+          />
+
           <Input
             type="text"
             placeholder="Complemento"
@@ -46,9 +56,24 @@ export function FormFields() {
             infoRight="Opcional"
           />
 
-          <Input type="text" placeholder="Bairro" {...register('district')} />
-          <Input type="text" placeholder="Cidade" {...register('city')} />
-          <Input type="text" placeholder="UF" {...register('uf')} />
+          <Input
+            type="text"
+            placeholder="Bairro"
+            {...register('district')}
+            error={errors.district?.message}
+          />
+          <Input
+            type="text"
+            placeholder="Cidade"
+            {...register('city')}
+            error={errors.city?.message}
+          />
+          <Input
+            type="text"
+            placeholder="UF"
+            {...register('uf')}
+            error={errors.uf?.message}
+          />
         </Grid>
       </AddressContainer>
       <PaymentContainer>

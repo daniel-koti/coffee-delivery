@@ -58,3 +58,9 @@ export const InfoRight = styled.p`
   font-style: italic;
   color: ${({ theme }) => theme.colors['base-label']};
 `
+
+export const ErrorInfo = styled.span`
+  margin-top: -0.8rem;
+  font-size: 1.2rem;
+  color: ${(props) => props.theme.colors['base-error']};
+`
