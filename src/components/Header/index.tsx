@@ -22,7 +22,7 @@ export function Header() {
           <InfoHeader>
             <span>
               <MapPin weight="fill" size={22} />
-              Luanda, LD
+              Lisboa, LB
             </span>
 
             <NavLink to="/checkout" className="cart-container">
