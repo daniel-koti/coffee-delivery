@@ -40,7 +40,7 @@ export function CoffeeItem({ coffee }: CoffeeItemProps) {
       <p>{coffee.description}</p>
       <FooterCoffee>
         <Price>
-          <span>R$</span>
+          <span>€</span>
           <span>{coffee.price}</span>
         </Price>
         <ActionsFooterContent>
