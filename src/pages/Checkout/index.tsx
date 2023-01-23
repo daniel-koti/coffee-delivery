@@ -97,7 +97,10 @@ export function CheckoutPage() {
               {cartItems.map((coffee) => {
                 return (
                   <CoffeeInfo key={coffee.id}>
-                    <img src={`public/${coffee.photo}`} alt="" />
+                    <img
+                      src={`./src/assets/coffees_photos/${coffee.photo}`}
+                      alt=""
+                    />
                     <div>
                       <p>{coffee.name}</p>
                       <ActionItemPayment>

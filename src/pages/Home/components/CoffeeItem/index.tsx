@@ -29,7 +29,10 @@ export function CoffeeItem({ coffee }: CoffeeItemProps) {
   return (
     <CoffeeItemContainer>
       <HeaderCoffee>
-        <img src={`public/${coffee.photo}`} alt={coffee.description} />
+        <img
+          src={`./src/assets/coffees_photos/${coffee.photo}`}
+          alt={coffee.description}
+        />
         <div className="tags">
           {coffee.tags.map((tag) => {
             return <span key={tag}>{tag}</span>
