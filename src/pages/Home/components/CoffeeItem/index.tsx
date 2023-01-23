@@ -46,8 +46,8 @@ export function CoffeeItem({ coffee }: CoffeeItemProps) {
         <ActionsFooterContent>
           <Actions
             quantity={coffee.amount}
-            handleIncrement={() => incrementCoffeeAmount(coffee.id, 'coffees')}
-            handleDecrement={() => decrementCoffeeAmount(coffee.id, 'coffees')}
+            handleIncrement={() => incrementCoffeeAmount(coffee.id, 'list')}
+            handleDecrement={() => decrementCoffeeAmount(coffee.id, 'list')}
           />
           <Cart disabled={!coffee.amount} onClick={handleAddToCart}>
             <ShoppingCart weight="fill" />
