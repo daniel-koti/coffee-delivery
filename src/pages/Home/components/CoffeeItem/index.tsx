@@ -30,7 +30,7 @@ export function CoffeeItem({ coffee }: CoffeeItemProps) {
     <CoffeeItemContainer>
       <HeaderCoffee>
         <img
-          src={`./src/assets/coffees_photos/${coffee.photo}`}
+          src={`/src/assets/coffees_photos/${coffee.photo}`}
           alt={coffee.description}
         />
         <div className="tags">
