@@ -76,9 +76,7 @@ https://github.com/daniel-koti/coffee-delivery
 - [x] Improve Styles
   - [X] Styled components styling
   - [x] Few adjustments to make the style equal to the layout
-  - [] Add Media queries
-  - [] Create Theme Switcher
-  - [] Create Light/Dark Theme
+
 
 ---
 
@@ -91,6 +89,7 @@ https://github.com/daniel-koti/coffee-delivery
 - [PhosphorIcons](https://phosphoricons.com/) - Phosphor is a flexible icon family for interfaces, diagrams, presentations
 - [zod](https://zod.dev/) - Typescript schema validation with static type inference
 - [react-hook-form](https://react-hook-form.com/) - Performant, flexible and extensible forms with easy-to-use validation.
+- [react-toastfy](https://www.npmjs.com/package/react-toastify) - 🎉 React-Toastify allows you to add notifications to your app with ease. No more nonsense!
 
 ---
 
