@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import introBackground from '../../../../assets/intro-background.png'
+import introBackground from '/public/assets/intro-background.png'
 import { rgba } from 'polished'
 
 export const IntroContainer = styled.section`

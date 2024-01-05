@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import { CoffeeContext } from '../../contexts/CoffeeContext'
 import { Wrapper } from '../Wrapper'
 
-import logoImg from '../../assets/logo.svg'
+import logoImg from '/public/assets/logo.svg'
 
 export function Header() {
   const { cartQuantity } = useContext(CoffeeContext)

@@ -2,12 +2,11 @@ import { MapPin, Timer, CurrencyDollar } from 'phosphor-react'
 import { useLocation } from 'react-router-dom'
 import { OrderDetailsContent, SuccessPageContainer, ShopItem } from './styles'
 
-import motoboyImg from '../../assets/motoboy.svg'
+import motoboyImg from '/public/assets/motoboy.svg'
 import { IconCircle } from '../../components/IconCircle'
 import { useTheme } from 'styled-components'
 import { Wrapper } from '../../components/Wrapper'
 import { newDeliveryFormData } from '../Checkout'
-import { paymentMethods } from '../Checkout/components/PaymentMethodOptions/index'
 
 export function SuccessPage() {
   const { colors } = useTheme()

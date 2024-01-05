@@ -98,7 +98,7 @@ export function CheckoutPage() {
                 return (
                   <CoffeeInfo key={coffee.id}>
                     <img
-                      src={`/src/assets/${coffee.photo}`}
+                      src={coffee.photo}
                       alt={coffee.description}
                     />
                     <div>
