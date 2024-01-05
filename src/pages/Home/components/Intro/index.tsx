@@ -1,5 +1,5 @@
 import { BenefitsContainer, IntroContainer, IntroContent } from './styles'
-import coffeeDelivery from '/public/assets/coffee-delivery.svg'
+import coffeeDelivery from '/assets/coffee-delivery.svg'
 import { InfoWithIcon } from '../../../../components/InfoWithIcon'
 import { useTheme } from 'styled-components'
 import { Wrapper } from '../../../../components/Wrapper'

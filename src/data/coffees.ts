@@ -60,7 +60,7 @@ export const coffeesList: Coffee[] = [
     name: 'Latte',
     description:
       'Uma dose de café expresso com o dobro de leite e espuma cremosa',
-    photo: 'latte.png',
+    photo: '/assets/latte.png',
     price: 9.9,
     amount: 0,
   },
